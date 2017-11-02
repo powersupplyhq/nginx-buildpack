@@ -38,7 +38,7 @@ echo "Starting build..."
 		--with-pcre=pcre-${PCRE_VERSION} \
 		--with-http_ssl_module \
 		--prefix=${INSTALL_ROOT} \
-		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION}
+		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module
 	make install
 )
