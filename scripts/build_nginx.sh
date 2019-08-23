@@ -45,6 +45,7 @@ echo "Starting build..."
 	make install DESTDIR=/opt/nginx
 )
 if [ $# = 1 ];then
+	cd $temp_dir/nginx-${NGINX_VERSION}
 	DEBUG="--with-debug "
 	./configure \
 		--with-pcre=pcre-${PCRE_VERSION} \
