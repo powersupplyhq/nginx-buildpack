@@ -32,6 +32,11 @@ echo "Downloading $headers_more_nginx_module_url"
 
 echo "Starting build..."
 
+DEBUG=""
+if [ $# = 1 ];then
+	DEBUG="--with-debug "
+fi
+
 (
 	cd nginx-${NGINX_VERSION}
 	./configure \
@@ -40,6 +45,7 @@ echo "Starting build..."
 		--prefix=${INSTALL_ROOT} \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
+		$DEBUG \
 		--with-ipv6
 	make install DESTDIR=/opt/nginx
 )
