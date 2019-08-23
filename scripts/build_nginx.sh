@@ -13,7 +13,7 @@ HEADERS_MORE_VERSION=0.25
 INSTALL_ROOT=$1
 
 nginx_tarball_url=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
-pcre_tarball_url=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-${PCRE_VERSION}.tar.bz2
+pcre_tarball_url=https://downloads.sourceforge.net/project/pcre/pcre/8.38/pcre-8.38.tar.bz2
 headers_more_nginx_module_url=https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 
 temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
