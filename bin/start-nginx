@@ -27,7 +27,11 @@ fi
 # Start NGINX
 # We expect nginx to run in foreground.
 echo 'buildpack=nginx at=nginx-start'
-bin/nginx -p . -c config/nginx.conf
+if [ -z $IN_DOCKER ];then
+	bin/nginx -p . -c config/nginx.conf
+else
+	sbin/nginx -p . -c config/nginx.conf
+fi
 echo "buildpack=nginx at=exit"
 
 exit 1

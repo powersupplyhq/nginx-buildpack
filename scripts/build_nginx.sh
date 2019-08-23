@@ -41,7 +41,7 @@ echo "Starting build..."
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
 		--with-ipv6
-	make install
+	make install DESTDIR=/opt/nginx
 )
 
 echo "Build completed successfully."
