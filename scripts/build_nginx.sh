@@ -10,8 +10,7 @@ NGINX_VERSION=1.8.0
 PCRE_VERSION=8.38
 HEADERS_MORE_VERSION=0.25
 
-INSTALL_ROOT=$1
-DEBUG=$2
+INSTALL_ROOT=""
 
 nginx_tarball_url=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 pcre_tarball_url=https://downloads.sourceforge.net/project/pcre/pcre/8.38/pcre-8.38.tar.bz2
@@ -33,6 +32,11 @@ echo "Downloading $headers_more_nginx_module_url"
 
 echo "Starting build..."
 
+DEBUG=""
+if [ $# = 1 ];then
+    DEBUG="--with-debug"
+fi
+
 (
 	cd nginx-${NGINX_VERSION}
 	./configure \
@@ -41,21 +45,9 @@ echo "Starting build..."
 		--prefix=${INSTALL_ROOT} \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
+        $DEBUG \
 		--with-ipv6
-	make install
+	make install DESTDIR=/opt/nginx
 )
-if [ $# = 2 ];then
-	cd $temp_dir/nginx-${NGINX_VERSION}
-	INSTALL_ROOT=/opt/nginxdebug
-	./configure \
-		--with-pcre=pcre-${PCRE_VERSION} \
-		--with-http_ssl_module \
-		--prefix=${INSTALL_ROOT} \
-		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
-		--with-http_realip_module \
-		--with-debug \
-		--with-ipv6
-	make install 
-fi
 
 echo "Build completed successfully."
