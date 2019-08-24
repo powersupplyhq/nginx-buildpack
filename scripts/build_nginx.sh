@@ -32,10 +32,6 @@ echo "Downloading $headers_more_nginx_module_url"
 
 echo "Starting build..."
 
-DEBUG=""
-if [ $# = 1 ];then
-    DEBUG="--with-debug"
-fi
 
 (
 	cd nginx-${NGINX_VERSION}
@@ -45,9 +41,24 @@ fi
 		--prefix=${INSTALL_ROOT} \
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
-        $DEBUG \
 		--with-ipv6
 	make install DESTDIR=/opt/nginx
 )
+
+if [ $# = 1 ];then
+(
+	cd $temp_dir/nginx-${NGINX_VERSION}
+	./configure \
+		--with-pcre=pcre-${PCRE_VERSION} \
+		--with-http_ssl_module \
+		--prefix=${INSTALL_ROOT} \
+		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
+		--with-http_realip_module \
+        --with-debug
+		--with-ipv6
+	make install DESTDIR=/opt/nginx-debug
+)
+
+fi
 
 echo "Build completed successfully."
