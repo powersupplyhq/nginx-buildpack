@@ -7,12 +7,18 @@ echo 'buildpack=nginx port=' $PORT
 ruby config/generate_config.rb
 
 # make sure we have a place for logs
-mkdir -p logs/nginx
-touch logs/nginx/access.log logs/nginx/error.log
+if [ ! -z $IN_DOCKER ];then
+    LOGS=/var/logs/nginx
+else
+    LOGS=logs/nginx
+fi
+
+mkdir -p $LOGS
+touch $LOGS/access.log $LOGS/error.log
 echo 'buildpack=nginx at=logs-initialized'
 
 # Redirect NGINX logs to stdout.
-tail -qF -n 0 logs/nginx/*.log &
+tail -qF -n 0 $LOGS/*.log &
 
 if [ -z $IN_DOCKER ];then 
 
