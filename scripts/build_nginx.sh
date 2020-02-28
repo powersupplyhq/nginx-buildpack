@@ -45,7 +45,7 @@ echo "Starting build..."
 	make install DESTDIR=/opt/nginx
 )
 
-if [ $# = 1 ];then
+if [ $DEBUG -eq 1 ];then
 (
 	cd $temp_dir/nginx-${NGINX_VERSION}
 	./configure \
