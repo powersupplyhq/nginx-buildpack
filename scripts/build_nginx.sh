@@ -34,8 +34,6 @@ echo "Starting build..."
 
 if [ $DEBUG -eq 1 ];then
     DESTDIR=/opt/nginx
-else
-    DESTDIR=
 fi
 
 (
@@ -47,7 +45,7 @@ fi
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
 		--with-ipv6
-	make install DESTDIR=$DESTDIR
+	make install
 )
 
 if [ $DEBUG -eq 1 ];then
