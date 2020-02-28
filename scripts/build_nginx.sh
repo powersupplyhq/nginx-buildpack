@@ -32,6 +32,15 @@ echo "Downloading $headers_more_nginx_module_url"
 
 echo "Starting build..."
 
+if [ $DEBUG -eq 1 ];then
+    DESTDIR=/opt/nginx
+else
+    DESTDIR=
+fi
+echo "DEBUG: $DEBUG"
+echo $DESTDIR
+
+exit
 
 (
 	cd nginx-${NGINX_VERSION}
@@ -42,7 +51,7 @@ echo "Starting build..."
 		--add-module=/${temp_dir}/nginx-${NGINX_VERSION}/headers-more-nginx-module-${HEADERS_MORE_VERSION} \
 		--with-http_realip_module \
 		--with-ipv6
-	make install DESTDIR=/opt/nginx
+	make install DESTDIR=$DESTDIR
 )
 
 if [ $DEBUG -eq 1 ];then
