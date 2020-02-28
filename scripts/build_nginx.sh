@@ -37,10 +37,6 @@ if [ $DEBUG -eq 1 ];then
 else
     DESTDIR=
 fi
-echo "DEBUG: $DEBUG"
-echo $DESTDIR
-
-exit
 
 (
 	cd nginx-${NGINX_VERSION}
