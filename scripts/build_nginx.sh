@@ -10,7 +10,7 @@ NGINX_VERSION=1.16.1
 PCRE_VERSION=8.41
 HEADERS_MORE_VERSION=0.33
 
-INSTALL_ROOT=""
+INSTALL_ROOT=$1
 
 nginx_tarball_url=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 pcre_tarball_url=https://downloads.sourceforge.net/project/pcre/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.bz2
@@ -34,6 +34,7 @@ echo "Starting build..."
 
 if [ $DEBUG -eq 1 ];then
     DESTDIR=/opt/nginx
+    INSTALL_ROOT=""
 fi
 
 (
