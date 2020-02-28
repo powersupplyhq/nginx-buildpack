@@ -52,7 +52,5 @@ if [[ ! -f $1/config/nginx.conf.erb ]]; then
 else
 	echo '-----> tf-nginx-buildpack: Custom config found in app/config.'
 fi
-echo "Installing gem: smarter_csv"
-gem install smarter_csv
 
 exit 0
