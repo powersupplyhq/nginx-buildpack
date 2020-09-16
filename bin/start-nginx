@@ -14,14 +14,6 @@ echo 'buildpack=nginx at=logs-initialized'
 # Redirect NGINX logs to stdout.
 tail -qF -n 0 logs/nginx/*.log &
 
-if [ -z $IN_DOCKER ];then 
-
-	# Checking that CloudFlare IPv4 and IPv6 has been configured
-	if [ `grep -oc 'set_real_ip_from' config/nginx.conf` -lt "10" ]; then
-	exit "not enough cloudflare ips";
-	fi
-fi
-
 # Start NGINX
 # We expect nginx to run in foreground.
 if [ -z $IN_DOCKER ];then
