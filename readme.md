@@ -34,7 +34,7 @@ repository and make sure you have a config/nginx.conf.erb.  From
 within the clone:
 
 ```
-   $ heroku create --buildpack http://github.com/Thinkful/nginx-buildpack.git
+   $ heroku create --buildpack http://github.com/powersupplyhq/nginx-buildpack.git
    $ git push heroku master
 ```
 (heroku magically creates a remote called 'heroku')
