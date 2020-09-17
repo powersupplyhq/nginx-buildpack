@@ -1,18 +1,12 @@
 ## Heroku Buildpack: nginx
 
 This buildpack was forked from
-https://github.com/ryandotsmith/nginx-buildpack but is taking
-a slightly different approach by now.  
+https://github.com/thinkful/nginx-buildpack and modified
+to discard the cloudflare IP configuration.
 
-The basic idea: 
- * Build nginx and dependencies from source 
- * Install nginx inside the target app
- * Allow the target app to configure nginx operation. 
-
-The original repo was focused on running nginx AND another app
-server in the target dyno, and synchronizing start and exit for
-both.  This version is for nginx alone, serving static content or
-proxying or whatever.
+The original repo at https://github.com/ryandotsmith/nginx-buildpack was focused on 
+running nginx AND another app server in the target dyno, and synchronizing start and exit for
+both.  This version is for nginx alone, serving static content or proxying or whatever.
 
 ### Versions
 
