@@ -101,11 +101,9 @@ See [scripts/build_nginx.sh](scripts/build_nginx.sh) for the
 build steps. Configuring is as easy as changing the "./configure"
 options.
 
-### Blame 
-
-Bill Gribble <bill@thinkful.com>
-
 ### License
+
+Copyright (c) 2020 Territory Foods
 
 Copyright (c) 2014 Thinkful 
 
