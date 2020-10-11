@@ -18,16 +18,16 @@ tail -qF -n 0 logs/nginx/*.log &
 # We expect nginx to run in foreground.
 if [ -z $IN_DOCKER ];then
 	echo 'buildpack=nginx at=nginx-start'
-	bin/nginx -p . -c config/nginx.conf
+	bin/nginx -p . -c config/nginx.conf.erb
 	echo "buildpack=nginx at=exit"
 else
-	sed -i "/set_real_ip_from/d" config/nginx.conf
+	sed -i "/set_real_ip_from/d" config/nginx.conf.erb
 	if [ "$DEBUG_MODE" = "full" ];then
 		echo "Running nginx in full debug mode. Set DEBUG_MODE to \"normal\" when finished"
-		/opt/nginx-debug/sbin/nginx -p . -c config/nginx.conf
+		/opt/nginx-debug/sbin/nginx -p . -c config/nginx.conf.erb
 	else
 		echo "Running nginx in normal debug mode. Set DEBUG_MODE to \"full\" if you need more detail."
-		sbin/nginx -p . -c config/nginx.conf
+		sbin/nginx -p . -c config/nginx.conf.erb
 	fi
 fi
 
