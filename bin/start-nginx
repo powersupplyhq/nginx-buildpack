@@ -3,8 +3,16 @@
 echo 'buildpack=nginx at=nginx-config'
 
 # Evaluate config to get $PORT
-echo 'buildpack=nginx port=' $PORT
-ruby config/generate_config.rb
+erb config/nginx.conf.erb > config/nginx.conf
+
+n=1
+while getopts :f option ${@:1:2}
+do
+  case "${option}"
+  in
+    f) FORCE=$OPTIND; n=$((n+1));;
+  esac
+done
 
 # make sure we have a place for logs
 mkdir -p logs/nginx
